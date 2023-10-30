@@ -35,8 +35,29 @@
 <link href="img/icon-120.png" rel="apple-touch-icon" sizes="120x120">
 <link href="img/icon-152.png" rel="apple-touch-icon" sizes="152x152">
 
+#if $varExists('forecast')
+
+#set $weather_icons = {'A': 'day', 'B': 'day', 'C': 'day',
+                       'D': 'cloudy-day-1', 'E': 'cloudy-day-1', 'F': 'cloudy-day-1',
+                       'G': 'cloudy-day-2', 'H': 'cloudy-day-2', 'I': 'cloudy-day-2',
+                       'J': 'cloudy-day-3', 'K': 'cloudy-day-3',
+                       'L': 'cloudy', 'M': 'cloudy',
+                       'N': 'rainy-2', 'O': 'rainy-2',
+                       'P': 'rainy-3', 'Q': 'rainy-3',
+                       'R': 'rainy-4', 'S': 'rainy-4',
+                       'T': 'rainy-5', 'U': 'rainy-5',
+                       'V': 'rainy-6', 'W': 'rainy-6', 'X': 'rainy-6',
+                       'Y': 'thunder', 'Z': 'thunder'}
+#if $current.dateTime.raw and $almanac.hasExtras and (($almanac.sun.rise.raw > $current.dateTime.raw) or ($almanac.sun.set.raw < $current.dateTime.raw))
+<link href="img/icons/${weather_icons[$forecast.zambretti.code].replace('day', 'night')}.svg" rel="icon" type="image/svg+xml">
+#else
+<link href="img/icons/${weather_icons[$forecast.zambretti.code]}.svg" rel="icon" type="image/svg+xml">
+#end if
+
+#else
 <link href="img/icon-192.png" rel="icon" sizes="192x192">
 <link href="img/icon-128.png" rel="icon" sizes="128x128">
+#end if
 
 <link href="manifest.json" rel="manifest">
 

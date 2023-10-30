@@ -38,7 +38,8 @@ See the [official documentation](https://neoground.com/docs/neowx-material/index
 
 1. [Download](https://neoground.com/projects/neowx-material) the latest version
 2. Install the extension: `wee_extension --install=path/to/neowx-material.zip`
-3. restart weewx: `sudo service weewx restart`
+3. Optionally install [`weewx-forecast`](https://github.com/chaunceygardiner/weewx-forecast) (required for forecasting)
+4. restart weewx: `sudo service weewx restart`
 
 If your skin doesn't change edit the `weewx.conf` and set `skin = neowx-material`
 in the `[StdReport]` section, after that reload weewx: `sudo service weewx reload`.
@@ -119,3 +120,5 @@ These 3rd party libraries are used:
 - [MomentJS](https://github.com/moment/moment) (MIT license)
 - [Weather Icons by Erik Flowers](https://github.com/erikflowers/weather-icons)
   (MIT / SIL OFL 1.1 license)
+- [Animated Weather Icons by amCharts](https://www.amcharts.com/free-animated-svg-weather-icons/)
+  (CC BY 4.0 license)

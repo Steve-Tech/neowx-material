@@ -11,12 +11,37 @@
                 #if $Extras.Header.custom_logo_url != ""
                 <img src="$Extras.Header.custom_logo_url" style="width: 4rem">
                 #else
-                <img src="img/icon-alpha-1x.png" srcset="img/icon-alpha-1x.png 1x, img/icon-alpha-2x.png 2x" style="width: 4rem">
+                #if $varExists('forecast') and $current.dateTime.raw
+                #set $weather_icons = {'A': 'day', 'B': 'day', 'C': 'day',
+                                       'D': 'cloudy-day-1', 'E': 'cloudy-day-1', 'F': 'cloudy-day-1',
+                                       'G': 'cloudy-day-2', 'H': 'cloudy-day-2', 'I': 'cloudy-day-2',
+                                       'J': 'cloudy-day-3', 'K': 'cloudy-day-3',
+                                       'L': 'cloudy', 'M': 'cloudy',
+                                       'N': 'rainy-2', 'O': 'rainy-2',
+                                       'P': 'rainy-3', 'Q': 'rainy-3',
+                                       'R': 'rainy-4', 'S': 'rainy-4',
+                                       'T': 'rainy-5', 'U': 'rainy-5',
+                                       'V': 'rainy-6', 'W': 'rainy-6', 'X': 'rainy-6',
+                                       'Y': 'thunder', 'Z': 'thunder'}
+                #if $almanac.hasExtras and (($almanac.sun.rise.raw > $current.dateTime.raw) or ($almanac.sun.set.raw < $current.dateTime.raw))
+                <img src="img/icons/${weather_icons[$forecast.zambretti.code].replace('day', 'night')}.svg" style="width: 4rem">
+                #else
+                <img src="img/icons/${weather_icons[$forecast.zambretti.code]}.svg" style="width: 4rem">
+                #end if
+                #else
+                <img src="img/icons/weather.svg" style="width: 4rem">
+                ##<img src="img/icon-alpha-1x.png" srcset="img/icon-alpha-1x.png 1x, img/icon-alpha-2x.png 2x" style="width: 4rem">
+                #end if
                 #end if
             </a>
             #end if
             <span>
+                ##<strong>$station.location</strong><br>
+                #if $varExists('forecast') and $current.dateTime.raw
+                <strong title="Zambretti Code: $forecast.zambretti.code">$forecast.label('Zambretti', $forecast.zambretti.code)</strong> - <span title="$station.location">Eatons Hill</span><br>
+                #else
                 <strong>$station.location</strong><br>
+                #end if
                 <span class="font-small">$current.dateTime</span>
             </span>
         </span>
