@@ -133,7 +133,11 @@
 <html lang="$Extras.language">
 <head>
   <title>
+    #if $varExists('forecast') and $current.dateTime.raw
+    $forecast.label('Zambretti', $forecast.zambretti.code) | $station.location
+    #else
     $Extras.Translations[$Extras.language].current | $station.location
+    #end if
   </title>
   #include "head.inc"
 </head>
