@@ -42,7 +42,7 @@
                 #else
                 <strong>$station.location</strong><br>
                 #end if
-                <span class="font-small">$current.dateTime</span>
+                <span class="font-small">$current.dateTime.format($Extras.Formatting.datetime)</span>
             </span>
         </span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
