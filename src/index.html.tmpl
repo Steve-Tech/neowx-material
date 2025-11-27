@@ -324,8 +324,13 @@ new ApexCharts(document.querySelector('#$id'), {
   #end if
 
   // inTemp + inHumidity
+  #if $day.inTemp.has_data
   $getChartJsCode("inTemp", "inTempchart", "area", "inTemp")
+  #end if
+
+  #if $day.inHumidity.has_data
   $getChartJsCode("inHumidity", "inHumiditychart", "area", "inHumidity")
+  #end if
 
   // Other sensors
   #if $day.snowDepth.has_data
